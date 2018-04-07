@@ -27,7 +27,7 @@ e or q => e (To exit the program)
 	   => q (To exit the program)
 
 Note: I tried to write the code that maximum eliminates input errors which can occur while providing the program with input commands.
-These preventəons are as follows:
+These preventions are as follows:
 
 1. Program testing (input commands, not program arguments) is case insensitive. For example,
 d a-b-c, D A-b-C, D A-B-C, d a-b-C, tn c c 3 m, tn A c 4 e, Tn c A 4 E, TN C C 3 M, SHrl a c, SHRL B b, DRN a c 30 L, dRN B b 30 E
@@ -37,3 +37,5 @@ and the graph is constructed using valid arguments only. Regarding invalid argum
 Graph construction is done using arguments starting from the second place. 1st argument is just to provide some text to show what the
 problem is related to. For instance, Graph:, Graph, or any other text. However, the other arguments should be entered as shown in the 8th
 step above so as to be considered as valid arguments. That is, the last argument doesn't include comma (,), but the others have it.
+
+END
