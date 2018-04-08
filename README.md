@@ -35,14 +35,16 @@ are all valid input commands.
 2. The input commands acknowledged from the user are stored based on a space bar character. For this reason, there should be 
 at least one space key character between command and its parameters in order to separate them from each other and accept as 
 a single text input. Any other unnecessary white-space characters are removed from the commands and parameters while testing. 
-To illustrate, d            A-b-C, d   	a-b-c, tn   a	 C 4		 E, TN 	C	 	C	 3		 	M, Shrl		   A	 			C 
-all are valid inputs to test the app. Pay special attention that there is at least one empty space between command and its 
-parameters in each sample above. This is very important to divide inputs into two separate inputs as without the single space, 
-for example, with the tab key as the input separation character between two inputs, the input is taken as the single input, not the two.
-That is, drn		c C		30	 l (drn, 2 tabs, c, space key, C, 2 tabs, 30, tab, space bar, l) is parsed as drn		c (1st input), 
-C		30 (2nd input), and l (3rd input). Since there isn't such a command like "drn		c", the warning occurs on the screen 
-informing the user about the wrong command and asks him/her to enter the command again. There has to be a space key between drn and c to 
-separate the input into two and the tab is not considered as the separation character.
+To illustrate, d            A-b-C (d, 12 spaces, A-b-C), d  	a-b-c (d, 2 spaces 1 tab, a-b-c), tn   a	 C 4		 E 
+(tn, 3 spaces, a, 1 tab 1 space, C, 1 space, 4, 2 tabs 1 space, E), TN 	C	 	C	 3		 	M 
+(TN, 2 spaces, C, 1 tab 1 space 1 tab, C, 1 tab 1 space, 3, 2 tabs 1 space 1 tab), Shrl		   A	 			C 
+(Shrl, 2 tabs 3 spaces, A, 1 tab 1 space 3 tabs) all are valid inputs to test the app. Pay special attention that there is at least 
+one empty space between command and its parameters in each sample above. This is very important to divide inputs into two separate 
+inputs as without the single space, for example, with the tab key as the input separation character between two inputs, the input is 
+taken as the single input, not the two. That is, drn		c C		30	 l (drn, 2 tabs, c, space key, C, 2 tabs, 30, tab, space bar, l) 
+is parsed as drn		c (1st input), C		30 (2nd input), and l (3rd input). Since there isn't such a command like "drn		c", 
+the warning occurs on the screen informing the user about the wrong command and asks him/her to enter the command again. There has to be 
+a space key between drn and c to separate the input into two and the tab is not considered as the separation character.
 3. Program arguments that violate routing (edge) specifications are skipped and the ones that don't violate are taken as valid arguments
 and the graph is constructed using valid arguments only. Regarding invalid arguments, warnings are displayed to the user on the screen.
 Graph construction is done using arguments starting from the second place. 1st argument is just to provide some text to show what the
