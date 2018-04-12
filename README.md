@@ -21,8 +21,8 @@ tn v1 v2 stops mark[m, e] => tn C C 3 m (To test the trip number from C to C wit
 						  => tn A C 4 e (To test the trip number from A to C with exactly 4 stops)
 shrl v1 v2 => shrl A C (To test the shortest route length from A to C)
 		   => shrl B B (To test the shortest route length from B to B)
-drn v1 v2 distance mark[l, e] => drn C C 30 l (To test the different route number from C to C with a distance less than 30)
-							  => drn C C 30 e (To test the different route number from C to C with a distance equal to 30)
+drn v1 v2 distance => drn C C 30 (To test the different route number from C to C with a distance less than 30)
+
 e or q => e (To exit the program)
 	   => q (To exit the program)
 
@@ -41,8 +41,8 @@ To illustrate, d            A-b-C (d, 12 spaces, A-b-C), d  	a-b-c (d, 2 spaces 
 (Shrl, 2 tabs 3 spaces, A, 1 tab 1 space 3 tabs, C) all are valid inputs to test the app. Pay special attention that there is at least 
 one empty space between command and its parameters in each sample above. This is very important to divide inputs into two separate 
 inputs as without the single space, for example, with the tab key as the input separation character between two inputs, the input is 
-taken as the single input, not the two. That is, drn		c C		30	 l (drn, 2 tabs, c, space key, C, 2 tabs, 30, tab, space bar, l) 
-is parsed as drn		c (1st input), C		30 (2nd input), and l (3rd input). Since there isn't such a command like "drn		c", 
+taken as the single input, not the two. That is, drn		c C		30 (drn, 2 tabs, c, space key, C, 2 tabs, 30, tab, space bar) 
+is parsed as drn		c (1st input) and C		30 (2nd input). Since there isn't such a command like "drn		c", 
 the warning occurs on the screen informing the user about the wrong command and asks him/her to enter the command again. There has to be 
 a space key between drn and c to separate the input into two and the tab is not considered as the separation character.
 3. Program arguments that violate routing (edge) specifications are skipped and the ones that don't violate are taken as valid arguments

@@ -1,12 +1,12 @@
-import java.util.LinkedList;
+import java.util.List;
 
 public class Vertex {
   
   private final String name;
   private int weight;
-  private final LinkedList<Vertex> adjList;
+  private final List<Vertex> adjList;
   
-  public Vertex(String name, int weight, LinkedList<Vertex> adjList) {
+  public Vertex(String name, int weight, List<Vertex> adjList) {
     this.name = name;
     this.weight = weight;
     this.adjList = adjList;
@@ -24,7 +24,7 @@ public class Vertex {
     this.weight = weight;
   }
   
-  public LinkedList<Vertex> getAdjList() {
+  public List<Vertex> getAdjList() {
     return adjList;  
   }
   

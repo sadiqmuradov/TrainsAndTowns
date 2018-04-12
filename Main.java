@@ -17,7 +17,8 @@ public class Main {
   	if (args.length == 0) {
       System.out.println("NO INPUT PROVIDED !!!");
       System.out.println("Enter graph routes to construct a graph.");
-      System.out.println();
+      
+      return;
     } else {
     	boolean wrongParam = false;
     	
@@ -93,12 +94,12 @@ public class Main {
     System.out.println("USAGE:");
     System.out.println("d r => [r: route]");
     System.out.println("d A-B-C => Output: 9");
-    System.out.println("tn v1 v2 s scm => [v1: start vertex, v2: end vertex, s: stops, i: stop comparator mark (m: max, e: exact)]");
-    System.out.println("tn C C 3 m => Output: C-D-C (2 stops), C-E-B-C (3 stops)");
+    System.out.println("tn v1 v2 s scm => [v1: start vertex, v2: end vertex, s: stops, scm: stop comparator mark (m: max, e: exact)]");
+    System.out.println("tn C C 3 m => Output: 2");
     System.out.println("shrl v1 v2 => [v1: start vertex, v2: end vertex]");
     System.out.println("shrl A C => Output: 9");
-    System.out.println("drn v1 v2 d dcm => [v1: start vertex, v2: end vertex, d: distance, i: distance comparator mark (l: less than, e: equal)]");
-    System.out.println("drn C C 30 l => Output: CDC, CEBC, CEBCDC, CDCEBC, CDEBC, CEBCEBC, CEBCEBCEBC");
+    System.out.println("drn v1 v2 d => [v1: start vertex, v2: end vertex, d: distance]");
+    System.out.println("drn C C 30 => Output: 7");
     System.out.println("e => [exit], q => [quit] (same logic, both can be used.)");
     System.out.println("------------------------------------------------------------------------------------------------------");
     System.out.println("Enter command to test the app ...");
@@ -141,7 +142,7 @@ public class Main {
             }
             
             if (cmdVertexList.size() > 0) {
-              int distance = g.computeDistance(cmdVertexList);
+              int distance = Util.computeDistance(g, cmdVertexList);
               
               if (distance < 0)
                 System.out.println("NO SUCH ROUTE");
@@ -188,13 +189,8 @@ public class Main {
               String v2 = cmdList.get(2);
               int st = Integer.parseInt(cmdList.get(3));
               String scm = cmdList.get(4);
-              String trip = g.computeTrip(v1, v2, st, scm);
-              System.out.println(trip);
-              
-              if (st <= 0) {
-                System.out.println("Invalid command parameter: " + st + " => Number of stops should be greater than 0.");
-                System.out.println("Enter command again ...");
-              }
+              int tripNumber = Util.computeTrip(g, v1, v2, st, scm);
+              System.out.println(tripNumber);
             }
           }
         } else if (firstCmd.equalsIgnoreCase("shrl")) {
@@ -219,12 +215,12 @@ public class Main {
             else {
               String v1 = cmdList.get(1);
               String v2 = cmdList.get(2);
-              int shortestRoute = g.computeShortestRoute(v1, v2);
+              int shortestRoute = Util.computeShortestRoute(g, v1, v2);
               System.out.println(shortestRoute);
             }
           }
         } else if (firstCmd.equalsIgnoreCase("drn")) {
-          if (cmdList.size() != 5) {
+          if (cmdList.size() != 4) {
             System.out.println("Wrong number of parameters!");
             System.out.println("Enter command again ...");
           } else {
@@ -247,25 +243,14 @@ public class Main {
               System.out.println("Wrong command parameter: " + cmdList.get(3) + " => Distance should be integer.");
             }
             
-            if (cmdList.get(4).length() > 1 || !cmdList.get(4).equalsIgnoreCase("l") && !cmdList.get(4).equalsIgnoreCase("e")) {
-              wrongParam = true;
-              System.out.println("Wrong command parameter: " + cmdList.get(4) + " => Distance comparator mark should be [l: less than, e:equal].");
-            }
-            
             if (wrongParam)
               System.out.println("Enter command again ...");
             else {
               String v1 = cmdList.get(1);
               String v2 = cmdList.get(2);
               int d = Integer.parseInt(cmdList.get(3));
-              String dcm = cmdList.get(4);
-              String trip = g.computeDifferentRoute(v1, v2, d, dcm);
-              System.out.println(trip);
-              
-              if (d <= 0) {
-                System.out.println("Invalid command parameter: " + d + " => Distance should be greater than 0.");
-                System.out.println("Enter command again ...");
-              }
+              int routeNumber = Util.computeDifferentRoute(g, v1, v2, d);
+              System.out.println(routeNumber);
             }
           }
         } else if (firstCmd.equalsIgnoreCase("e") || firstCmd.equalsIgnoreCase("q")) {
